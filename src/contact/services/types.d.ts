@@ -8,4 +8,4 @@ interface Contact {
 
 type ApiPayload = Pick<Contact, "phoneNumber" | "email">;
 
-export { Contact, ApiPayload };
+export { Contact };
