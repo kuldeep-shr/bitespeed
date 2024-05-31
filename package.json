@@ -21,8 +21,8 @@
   "scripts": {
     "build": "tsc",
     "prebuild": "rimraf dist/",
-    "create-table": "ts-node ./src/DATABASE/CreateTable.ts",
-    "start": "npm run create-table && node ./dist/app.js",
+    "create-table": "ts-node ./src/database/CreateTable.ts",
+    "start": "npm run create-table && npm run build && node ./dist/app.js",
     "start:docker": "npm run build && npm start",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'npm run build && npm run start'"
   },
