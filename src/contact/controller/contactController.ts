@@ -24,13 +24,22 @@ const createContact = async (req: Request, res: Response) => {
       email: String(email),
       phoneNumber: String(phoneNumber),
     });
-    console.log("savingContact........", savingContact);
-    return apiResponse.result(
-      res,
-      savingContact.message,
-      savingContact.data,
-      httpStatusCodes.CREATED
-    );
+
+    if (savingContact.statusCode != 400) {
+      return apiResponse.result(
+        res,
+        savingContact.message,
+        savingContact.data,
+        httpStatusCodes.CREATED
+      );
+    } else {
+      return apiResponse.result(
+        res,
+        savingContact.message,
+        savingContact.data,
+        httpStatusCodes.BAD_REQUEST
+      );
+    }
   } catch (error: any) {
     return apiResponse.error(res, httpStatusCodes.BAD_REQUEST, error.message);
   }
