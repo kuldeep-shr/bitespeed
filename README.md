@@ -23,7 +23,7 @@ To create a new contact, use the following endpoint:
 
 **Example Request:**
 
-    GET /create-contact?email=john.doe@example.com&phoneNumber=%2B1234567890
+    GET https://bitespeed-tukj.onrender.com/create-contact?email=john.doe@example.com&phoneNumber=%2B1234567890
 
 **Response:**
 
@@ -31,5 +31,54 @@ To create a new contact, use the following endpoint:
 {
   "message": "created successfully",
   "data": []
+}
+```
+
+### 2. Identify Contact
+
+##### CURL request example
+
+---
+
+curl --location 'https://bitespeed-tukj.onrender.com/identify' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"email": "lorraine@hillvalley.edu",
+"phoneNumber": "123456"
+}'
+
+---
+
+To identify a contact, use the following endpoint:
+
+**Request Body:**
+
+- `email` (string): The email address of the contact.
+- `phoneNumber` (string): The phone number of the contact.
+
+  ```json
+  {
+    "email": "lorraine@hillvalley.edu",
+    "phoneNumber": "123456"
+  }
+  ```
+
+**Example Request:**
+
+    POST https://bitespeed-tukj.onrender.com/identify
+
+**Response:**
+
+```json
+{
+  "message": "contact list",
+  "data": {
+    "contact": {
+      "primaryContactId": 1,
+      "emails": ["lorraine@hillvalley.edu"],
+      "phoneNumbers": [123456],
+      "secondaryContactIds": []
+    }
+  }
 }
 ```
