@@ -24,6 +24,7 @@ const createContact = async (req: Request, res: Response) => {
       email: String(email),
       phoneNumber: String(phoneNumber),
     });
+    console.log("savingContact........", savingContact);
     return apiResponse.result(
       res,
       savingContact.message,

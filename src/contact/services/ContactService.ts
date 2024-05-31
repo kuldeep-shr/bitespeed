@@ -11,6 +11,23 @@ const createContactService = async (args: ApiPayload) => {
       },
     });
     let extractPrimaryOne = emailExistency.map((d: any) => d.dataValues);
+
+    console.log("extractPrimaryOneService.......", extractPrimaryOne);
+    console.log("argsService.......", args);
+
+    const exists = extractPrimaryOne.some(
+      (item: any) =>
+        item.phoneNumber === args.phoneNumber && item.email === args.email
+    );
+
+    if (exists) {
+      return {
+        message: "email or phone already exits",
+        isError: true,
+        statusCode: 400,
+        data: [],
+      };
+    }
     extractPrimaryOne = extractPrimaryOne.filter(
       (data: any) => data.linkPrecedence == "primary"
     );
